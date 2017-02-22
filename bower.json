@@ -1,0 +1,22 @@
+{
+  "name": "issue-tracker",
+  "authors": [
+    "gassnerw@gmail.com"
+  ],
+  "description": "A tiny sf2 example app",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "tinymce": "^4.5.3",
+    "bootstrap": "^3.3.7"
+  }
+}
