@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use AppBundle\Entity\Traits\BlameableEntity;
 
 /**
  * Issue
@@ -23,6 +24,12 @@ class Issue
      * updates createdAt, updatedAt fields
      */
     use TimestampableEntity;
+
+    /**
+     * Hook blameable behavior
+     * updates createdBy, updatedBy fields
+     */
+    use BlameableEntity;
 
     /**
      * @var int
@@ -47,7 +54,13 @@ class Issue
      */
     private $status;
 
-    public function __conxtruct()
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="staffer_id", referencedColumnName="id", nullable=true)
+     */
+    private $staffer;
+
+    public function __construct()
     {
         $this->status = $this::STATUS_OPEN;
     }
@@ -106,5 +119,28 @@ class Issue
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set staffer
+     *
+     * @param User $staffer
+     * @return Issue
+     */
+    public function setStaffer(User $staffer = null)
+    {
+        $this->staffer = $staffer;
+
+        return $this;
+    }
+
+    /**
+     * Get staffer
+     *
+     * @return User
+     */
+    public function getStaffer()
+    {
+        return $this->staffer;
     }
 }

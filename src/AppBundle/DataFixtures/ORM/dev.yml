@@ -1,0 +1,44 @@
+AppBundle\Entity\User:
+  admin:
+    username: admin
+    plainpassword: admin
+    email: admin@example.com
+    enabled: true
+    roles: [ROLE_ADMIN]
+  staffer{1..3}:
+      username: 'staffer<current()>'
+      email: '<email()>'
+      enabled: true
+      plainpassword: staffer
+      roles: [ROLE_STAFFER]
+  customer{1..10}:
+      username: '<username()>'
+      email: '<email()>'
+      enabled: true
+      plainpassword: user
+
+AppBundle\Entity\Issue:
+    issue{1..40}:
+        subject: Issue_#<current()>
+        status: <status()>
+        createdAt: <dateTimeBetween('-3 months')>
+        updatedAt: '<dateTimeBetween($createdAt, "now")>'
+        createdBy: '@customer*'
+        updatedBy: '@self->createdBy'
+        staffer: '@staffer*'
+    issue{41..60}:
+        subject: Issue_#<current()>
+        status: open
+        createdAt: <dateTimeBetween('-3 months')>
+        updatedAt: '<dateTimeBetween($createdAt, "now")>'
+        createdBy: '@customer*'
+        updatedBy: '@self->createdBy'
+
+AppBundle\Entity\Comment:
+    comment{1..100}:
+        issue: '@issue*'
+        createdAt: <dateTimeBetween('-1 week')>
+        updatedAt: '@self->createdAt'
+        body: <body(3,true)>
+        createdBy: '@customer*'
+        updatedBy: '@self->createdBy'
