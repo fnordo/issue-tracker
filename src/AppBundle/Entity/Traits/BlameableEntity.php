@@ -20,7 +20,7 @@ trait BlameableEntity
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumn(name="created_by", referencedColumnName="id")
      */
-    protected $createdBy;
+    protected $creator;
 
     /**
      * @var User
@@ -29,51 +29,51 @@ trait BlameableEntity
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumn(name="updated_by", referencedColumnName="id")
      */
-    protected $updatedBy;
+    protected $editor;
 
     /**
-     * Set createdBy
+     * Set creator
      *
-     * @param User $createdBy
+     * @param User $creator
      * @return Object
      */
-    public function setCreatedBy(User $createdBy)
+    public function setCreator(User $creator)
     {
-        $this->createdBy = $createdBy;
+        $this->creator = $creator;
 
         return $this;
     }
 
     /**
-     * Get createdBy
+     * Get creator
      *
      * @return User
      */
-    public function getCreatedBy()
+    public function getCreator()
     {
-        return $this->createdBy;
+        return $this->creator;
     }
 
     /**
-     * Set updatedBy
+     * Set editor
      *
-     * @param User $updatedBy
+     * @param User $editor
      * @return Object
      */
-    public function setUpdatedBy(User $updatedBy)
+    public function setEditor(User $editor)
     {
-        $this->updatedBy = $updatedBy;
+        $this->editor = $editor;
 
         return $this;
     }
 
     /**
-     * Get updatedBy
+     * Get editor
      *
      * @return User
      */
-    public function getUpdatedBy()
+    public function getEditor()
     {
-        return $this->updatedBy;
+        return $this->editor;
     }
 }

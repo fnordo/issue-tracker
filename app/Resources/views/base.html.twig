@@ -17,13 +17,15 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block navigation %}
+        {% block top_nav %}
             {% include '::top_nav.html.twig' %}
         {% endblock %}
         {% block body %}
             <div class="container">
+                {% block breadcrumbs %}{% endblock %}
                 <div class="row">
-                    <div class="col-xs-12 text-center">
+                    <div class="col-xs-12">
+                        {% block action_nav %}{% endblock %}
                         {% block content %}{% endblock %}
                     </div>
                 </div>

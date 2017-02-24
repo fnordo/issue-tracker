@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use AppBundle\Entity\Traits\BlameableEntity;
@@ -27,7 +28,7 @@ class Issue
 
     /**
      * Hook blameable behavior
-     * updates createdBy, updatedBy fields
+     * updates creator, editor fields
      */
     use BlameableEntity;
 
@@ -50,9 +51,21 @@ class Issue
     /**
      * @var string
      *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="status", type="string", length=255)
      */
     private $status;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="issue", cascade={"persist", "remove"})
+     */
+    private $comments;
 
     /**
      * @ORM\ManyToOne(targetEntity="User")
@@ -63,6 +76,7 @@ class Issue
     public function __construct()
     {
         $this->status = $this::STATUS_OPEN;
+        $this->comments = new ArrayCollection();
     }
 
     /**
@@ -99,6 +113,23 @@ class Issue
     }
 
     /**
+     * Set description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+    /**
      * Set status
      *
      * @param string $status
@@ -121,6 +152,59 @@ class Issue
         return $this->status;
     }
 
+    /**
+     * Check if the issue has been closed
+     *
+     * @return bool
+     */
+    public function isClosed()
+    {
+        return $this->status === $this::STATUS_CLOSED;
+    }
+
+    /**
+     * Add a comment
+     *
+     * @param Comment $comment
+     */
+    public function addComment(Comment $comment)
+    {
+        if (false === $this->comments->contains($comment)) {
+            $this->comments->add($comment);
+            $comment->setIssue($this);
+        }
+    }
+
+    /**
+     * Remove a comment
+     *
+     * @param Comment $comment
+     */
+    public function removeComment(Comment $comment)
+    {
+        if (true === $this->comments->contains($comment)) {
+            $this->comments->remove($comment);
+        }
+    }
+    /**
+     * Get comments
+     *
+     * @return ArrayCollection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * Check if the issue has comments
+     *
+     * @return bool
+     */
+    public function hasComments()
+    {
+        return $this->comments->count() > 0;
+    }
     /**
      * Set staffer
      *

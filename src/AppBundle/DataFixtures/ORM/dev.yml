@@ -1,12 +1,23 @@
 AppBundle\Entity\User:
+  user:
+    username: user
+    plainpassword: user
+    email: user@example.com
+    enabled: true
   admin:
     username: admin
     plainpassword: admin
     email: admin@example.com
     enabled: true
     roles: [ROLE_ADMIN]
-  staffer{1..3}:
-      username: 'staffer<current()>'
+  staffer1:
+      username: 'john.doe'
+      email: '<email()>'
+      enabled: true
+      plainpassword: staffer
+      roles: [ROLE_STAFFER]
+  staffer2:
+      username: 'jane.smith'
       email: '<email()>'
       enabled: true
       plainpassword: staffer
@@ -20,6 +31,7 @@ AppBundle\Entity\User:
 AppBundle\Entity\Issue:
     issue{1..40}:
         subject: Issue_#<current()>
+        description: <paragraphs(3, true)>
         status: <status()>
         createdAt: <dateTimeBetween('-3 months')>
         updatedAt: '<dateTimeBetween($createdAt, "now")>'
@@ -28,6 +40,7 @@ AppBundle\Entity\Issue:
         staffer: '@staffer*'
     issue{41..60}:
         subject: Issue_#<current()>
+        description: <paragraphs(3, true)>
         status: open
         createdAt: <dateTimeBetween('-3 months')>
         updatedAt: '<dateTimeBetween($createdAt, "now")>'
@@ -35,7 +48,7 @@ AppBundle\Entity\Issue:
         updatedBy: '@self->createdBy'
 
 AppBundle\Entity\Comment:
-    comment{1..100}:
+    comment{1..60}:
         issue: '@issue*'
         createdAt: <dateTimeBetween('-1 week')>
         updatedAt: '@self->createdAt'

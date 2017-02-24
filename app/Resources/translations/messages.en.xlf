@@ -2,13 +2,113 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
         <body>
+            <trans-unit id="placeholder.username">
+                <source>placeholder.username</source>
+                <target>Username</target>
+            </trans-unit>
+            <trans-unit id="placeholder.password">
+                <source>placeholder.password</source>
+                <target>Password</target>
+            </trans-unit>
             <trans-unit id="title.login">
                 <source>title.login</source>
                 <target>Login</target>
             </trans-unit>
+            <trans-unit id="title.issue_list">
+                <source>title.issue_list</source>
+                <target>Issues</target>
+            </trans-unit>
             <trans-unit id="meta.title.default">
                 <source>meta.title.default</source>
                 <target>Acme Issue Tracker</target>
+            </trans-unit>
+            <trans-unit id="issue.header.all">
+                <source>issue.header.all</source>
+                <target>Issues overview</target>
+            </trans-unit>
+            <trans-unit id="issue.header.new">
+                <source>issue.header.new</source>
+                <target>New issue</target>
+            </trans-unit>
+            <trans-unit id="issue.header.edit">
+                <source>issue.header.edit</source>
+                <target>Edit "title"</target>
+            </trans-unit>
+            <trans-unit id="issue.title.new">
+                <source>issue.title.new</source>
+                <target>New issue</target>
+            </trans-unit>
+            <trans-unit id="issue.delete">
+                <source>issue.delete</source>
+                <target>Sure you want to delte this issue?</target>
+            </trans-unit>
+            <trans-unit id="issue.label.submit">
+                <source>issue.label.submit</source>
+                <target>Submit new issue</target>
+            </trans-unit>
+            <trans-unit id="issue.created_on">
+                <source>issue.created_on</source>
+                <target>created this issue on</target>
+            </trans-unit>
+            <trans-unit id="commented_on">
+                <source>commented_on</source>
+                <target>commented on</target>
+            </trans-unit>
+            <trans-unit id="show_issue">
+                <source>show_issue</source>
+                <target>Show issue</target>
+            </trans-unit>
+            <trans-unit id="status">
+                <source>status</source>
+                <target>Status</target>
+            </trans-unit>
+            <trans-unit id="open">
+                <source>open</source>
+                <target>open</target>
+            </trans-unit>
+            <trans-unit id="closed">
+                <source>closed</source>
+                <target>closed</target>
+            </trans-unit>
+            <trans-unit id="subject">
+                <source>subject</source>
+                <target>Subject</target>
+            </trans-unit>
+            <trans-unit id="created_by">
+                <source>created_by</source>
+                <target>created by</target>
+            </trans-unit>
+            <trans-unit id="created_at">
+                <source>created_at</source>
+                <target>created at</target>
+            </trans-unit>
+            <trans-unit id="actions">
+                <source>actions</source>
+                <target>Actions</target>
+            </trans-unit>
+            <trans-unit id="delete">
+                <source>delete</source>
+                <target>Delete</target>
+            </trans-unit>
+            <trans-unit id="cancel">
+                <source>cancel</source>
+                <target>Cancel</target>
+            </trans-unit>
+            <trans-unit id="save">
+                <source>save</source>
+                <target>Save</target>
+            </trans-unit>
+            <trans-unit id="edit">
+                <source>edit</source>
+                <target>Edit</target>
+            </trans-unit>
+            <trans-unit id="back_to_list">
+                <source>back_to_list</source>
+                <target>Back to list</target>
+            </trans-unit>
+            <trans-unit id="badge.comments">
+                <source>badge.comments</source>
+                <target>Comments</target>
             </trans-unit>
         </body>
     </file>

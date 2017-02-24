@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block action_nav %}
+    <div>
+        <div class='btn-toolbar pull-right'>
+            <div class='btn-group'>
+                <a class="btn btn-default btn-primary" href="{{ path('issue_index') }}" role="navigation">{{ 'back_to_list'|trans }}</a>
+                <a class="btn btn-default btn-success hidden-xs" href="{{ path('issue_new') }}" role="navigation">{{ 'issue.title.new'|trans }}</a>
+            </div>
+        </div>
+        <h1>{{ issue.subject }}</h1>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-3 col-sm-2 col-md-1">
+            <button class="btn btn-xs btn-{{ issue.isClosed ? 'danger' : 'success'  }}">
+                <span class="glyphicon glyphicon-{{ issue.isClosed ? 'ok' : 'exclamation-sign' }}"></span>
+                {{ issue.status|upper }}
+            </button>
+        </div>
+        <div class="col-xs-9 col-sm-10 col-md-11 hidden-xs">
+            <strong>{{ issue.creator.username }}</strong> {{ 'issue.created_on'|trans }} {{ issue.createdAt|date("m/d/Y") }}
+            <strong class="pull-right">{{ 'badge.comments'|trans }} <span class="badge">{{ issue.comments|length }}</span></strong>
+        </div>
+    </div>
+    <hr/>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class=" panel panel-default">
+                <div class="panel-heading">
+                        <span class="glyphicon glyphicon-comment small"></span>
+                        <strong>{{ issue.creator.username }}</strong> {{ 'commented_on'|trans }} {{ issue.createdAt|date("m/d/Y") }}
+                        <div class="wrap-action-icon pull-right">
+                            {{ form_start(delete_form, { 'attr': { 'id': 'app_issue_delete' }} ) }}
+                                <span class="trigger-submit action-delete glyphicon glyphicon-remove" data-form="#app_issue_delete" title="{{ 'issue.delete'|trans }}"></span>
+                            {{ form_end(delete_form) }}
+                        </div>
+                        <div class="wrap-action-icon pull-right">
+                            <a href="{{ path('issue_edit', { id: issue.id }) }}">
+                                <span class="glyphicon glyphicon-pencil" title="{{ 'edit'|trans }}"></span>
+                            </a>
+                        </div>
+                </div>
+                <div class="panel-body">
+                    {{ issue.description }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if issue.hasComments %}
+        <div class="row">
+            <div class="wrap-comment-list col-xs-12">
+                {% for comment in issue.comments %}
+                    {% include 'comment/show.html.twig' %}
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

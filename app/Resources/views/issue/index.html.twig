@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block action_nav %}
+    <div class='page-header'>
+        <div class='btn-toolbar pull-right'>
+            <div class='btn-group'>
+                <a class="btn btn-success" href="{{ path('issue_new') }}">{{ 'issue.title.new'|trans }}</a>
+            </div>
+        </div>
+        <h2>{{ 'issue.header.all'|trans }}</h2>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12 table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>{{ 'status'|trans }}</th>
+                        <th>{{ 'subject'|trans }}</th>
+                        <th>{{ 'created_by'|trans }}</th>
+                        <th>{{ 'created_at'|trans }}</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for issue in issues %}
+                    <tr>
+                        <td class="issue-status">
+                            <span class="glyphicon {{ issue.status == 'closed' ? 'glyphicon-ok closed': 'glyphicon-exclamation-sign open' }}"
+                              title="{{ issue.status|trans }}"></span>
+                        </td>
+                        <td>
+                            <a href="{{ path('issue_show', { 'id': issue.id }) }}">{{ issue.subject }}</a>
+                        </td>
+                        <td>{{ issue.creator.username }}</td>
+                        <td>{{ issue.createdAt|date('Y-m-d') }}</td>
+                        <td>
+                        {% if issue.comments|length > 0 %}
+                            <span class="glyphicon glyphicon-comment small"></span>
+                            <span class="small">{{ issue.comments|length }}</span>
+                        {% endif %}
+                        </td>
+                        <td></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% include '::pagination.html.twig' with { 'items': issues } %}
+{% endblock %}
