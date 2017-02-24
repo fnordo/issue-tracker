@@ -35,8 +35,8 @@ AppBundle\Entity\Issue:
         status: <status()>
         createdAt: <dateTimeBetween('-3 months')>
         updatedAt: '<dateTimeBetween($createdAt, "now")>'
-        createdBy: '@customer*'
-        updatedBy: '@self->createdBy'
+        creator: '@customer*'
+        editor: '@self->creator'
         staffer: '@staffer*'
     issue{41..60}:
         subject: Issue_#<current()>
@@ -44,8 +44,8 @@ AppBundle\Entity\Issue:
         status: open
         createdAt: <dateTimeBetween('-3 months')>
         updatedAt: '<dateTimeBetween($createdAt, "now")>'
-        createdBy: '@customer*'
-        updatedBy: '@self->createdBy'
+        creator: '@customer*'
+        editor: '@self->creator'
 
 AppBundle\Entity\Comment:
     comment{1..60}:
@@ -53,5 +53,5 @@ AppBundle\Entity\Comment:
         createdAt: <dateTimeBetween('-1 week')>
         updatedAt: '@self->createdAt'
         body: <body(3,true)>
-        createdBy: '@customer*'
-        updatedBy: '@self->createdBy'
+        creator: '@customer*'
+        editor: '@self->creator'
