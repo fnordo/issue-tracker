@@ -1,5 +1,63 @@
 {% extends 'base.html.twig' %}
 
+{% block action_nav %}
+    <div class='page-header'>
+        <h2>Welcome to the ACME Issue Tracker Demo</h2>
+    </div>
+{% endblock %}
+
 {% block content %}
-    <p class="lead">Move along folks. Nothing to see here.</p>
+    <h3>What`s the story?</h3>
+    <p>
+        This is just a tiny example application built with
+        <a href="https://github.com/symfony/symfony-standard/tree/2.8" target="_blank">
+            Symfony {{ constant('Symfony\\Component\\HttpKernel\\Kernel::VERSION') }}
+        </a> that lets you <code>CRUD</code> issue-entities.
+    </p>
+    <p>
+        After you have loaded the application fixtures into your database (by executing <code>php app/console h:d:f:l</code>
+        from the projects root-directory), you should be able to:
+    </p>
+    <ul>
+        <li>
+            Browse the created dummy issues by visiting the <a href="{{ path('issue_index') }}">issues overview page</a> (publicly accessible).
+        </li>
+        <li>
+            View the <a href="{{ path('issue_show', { 'id': 1 }) }}">detail page of an issue</a> with its related comments (publicly accessible).
+        </li>
+        <li>
+            <a href="{{ path('issue_new') }}">Create new issues</a> (requires an authenticated user).
+        </li>
+        <li>
+            Edit issues that have been created by your user (requires an authenticated user).
+        </li>
+        <li>
+            As an admin-user you may also edit and delete any issue regardless of which user has created it (requires an authenticated user with <code>ROLE_ADMIN</code>).
+        </li>
+    </ul>
+
+    <h3>User credentials</h3>
+    <p>
+        To access the restricted area, visit the <a href="{{ path('fos_user_security_login') }}">login page</a> and authenticate yourself using one of the following accounts:
+    </p>
+    <ul>
+        <li>
+            Standard user:
+            <ul>
+                <li>Username: <strong>user</strong></li>
+                <li>Password: <strong>user</strong></li>
+            </ul>
+        </li>
+        
+        <li>Admin user:</li>
+        <ul>
+            <li>Username: <strong>admin</strong></li>
+            <li>Password: <strong>admin</strong></li>
+        </ul>
+    </ul>
+    <p>
+        <strong>Note:</strong>
+        You may also login as any other existing user listed in the <q>created_by</q>-column of the <a href="{{ path('issue_index') }}">issues list</a>
+        with the particular username and the password <strong>user</strong>.
+    </p>
 {% endblock %}

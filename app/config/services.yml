@@ -7,6 +7,13 @@ services:
         class: AppBundle\DataFixtures\Faker\Provider\CommentProvider
         tags: [ { name: hautelook_alice.faker.provider } ]
 
+    # Request listener
+    app.request_listener:
+        class: AppBundle\EventListener\RequestListener
+        arguments: ['@security.token_storage','@security.authorization_checker', '@router']
+        tags:
+          - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+
     # Security voters.
     app.issue_voter:
         class: AppBundle\Security\Voter\IssueVoter
