@@ -39,7 +39,7 @@ class RequestListener
     }
 
     /**
-     * If an authenticated user visits the login page, redirect to homepage.
+     * If an authenticated user visits the login page, redirect to issues index.
      *
      * @param GetResponseEvent $event
      */

@@ -12,8 +12,6 @@ use Faker\Provider\Lorem;
 class CommentProvider
 {
     /**
-     * Randomly set body.
-     *
      * @param int $nbSentences
      * @param bool $variableNbSentences
      * @return mixed
