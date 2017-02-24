@@ -110,6 +110,22 @@
                 <source>badge.comments</source>
                 <target>Comments</target>
             </trans-unit>
+            <trans-unit id="security.login.header">
+                <source>security.login.header</source>
+                <target>Please login</target>
+            </trans-unit>
+            <trans-unit id="security.login.username">
+                <source>security.login.username</source>
+                <target>Username</target>
+            </trans-unit>
+            <trans-unit id="security.login.password">
+                <source>security.login.password</source>
+                <target>Password</target>
+            </trans-unit>
+            <trans-unit id="security.login.submit">
+                <source>security.login.submit</source>
+                <target>Login</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

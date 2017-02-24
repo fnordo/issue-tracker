@@ -10,7 +10,8 @@
         {% block stylesheets %}
             {% stylesheets
                 'bundles/app/vendor/bootstrap/dist/css/bootstrap.min.css'
-                'bundles/app/css/*' filter='cssrewrite' %}
+                'bundles/app/css/login.css'
+                'bundles/app/css/app.css' filter='cssrewrite' %}
                 <link rel="stylesheet" href="{{ asset_url }}" />
             {% endstylesheets %}
         {% endblock %}
