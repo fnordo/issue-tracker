@@ -104,6 +104,8 @@ class IssueController extends Controller
      */
     public function editAction(Request $request, Issue $issue)
     {
+        $this->denyAccessUnlessGranted('edit', $issue);
+
         $deleteForm = $this->createDeleteForm($issue);
         $editForm = $this->createForm('AppBundle\Form\IssueType', $issue);
         $editForm->handleRequest($request);
@@ -131,6 +133,8 @@ class IssueController extends Controller
      */
     public function deleteAction(Request $request, Issue $issue)
     {
+        $this->denyAccessUnlessGranted('delete', $issue);
+
         $form = $this->createDeleteForm($issue);
         $form->handleRequest($request);
 

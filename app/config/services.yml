@@ -1,7 +1,16 @@
 services:
+    # Custom fixture providers.
     faker.provider.issue:
         class: AppBundle\DataFixtures\Faker\Provider\IssueProvider
         tags: [ { name: hautelook_alice.faker.provider } ]
     faker.provider.comment:
         class: AppBundle\DataFixtures\Faker\Provider\CommentProvider
         tags: [ { name: hautelook_alice.faker.provider } ]
+
+    # Security voters.
+    app.issue_voter:
+        class: AppBundle\Security\Voter\IssueVoter
+        arguments: ['@security.access.decision_manager']
+        tags:
+            - { name: security.voter }
+        public: false
