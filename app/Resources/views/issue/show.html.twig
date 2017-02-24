@@ -30,18 +30,24 @@
         <div class="col-xs-12">
             <div class=" panel panel-default">
                 <div class="panel-heading">
-                        <span class="glyphicon glyphicon-comment small"></span>
-                        <strong>{{ issue.creator.username }}</strong> {{ 'commented_on'|trans }} {{ issue.createdAt|date("m/d/Y") }}
-                        <div class="wrap-action-icon pull-right">
-                            {{ form_start(delete_form, { 'attr': { 'id': 'app_issue_delete' }} ) }}
-                                <span class="trigger-submit action-delete glyphicon glyphicon-remove" data-form="#app_issue_delete" title="{{ 'issue.delete'|trans }}"></span>
-                            {{ form_end(delete_form) }}
-                        </div>
-                        <div class="wrap-action-icon pull-right">
-                            <a href="{{ path('issue_edit', { id: issue.id }) }}">
-                                <span class="glyphicon glyphicon-pencil" title="{{ 'edit'|trans }}"></span>
-                            </a>
-                        </div>
+                    <span class="glyphicon glyphicon-comment small"></span>
+                    <strong>{{ issue.creator.username }}</strong> {{ 'commented_on'|trans }} {{ issue.createdAt|date("m/d/Y") }}
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        {% if is_granted('DELETE', issue) %}
+                            <div class="wrap-action-icon pull-right">
+                                {{ form_start(delete_form, { 'attr': { 'id': 'app_issue_delete' }} ) }}
+                                    <span class="trigger-submit action-delete glyphicon glyphicon-remove" data-form="#app_issue_delete" title="{{ 'issue.delete'|trans }}"></span>
+                                {{ form_end(delete_form) }}
+                            </div>
+                        {% endif %}
+                        {% if is_granted('EDIT', issue) %}
+                            <div class="wrap-action-icon pull-right">
+                                <a href="{{ path('issue_edit', { id: issue.id }) }}">
+                                    <span class="glyphicon glyphicon-pencil" title="{{ 'edit'|trans }}"></span>
+                                </a>
+                            </div>
+                        {% endif %}
+                    {% endif %}
                 </div>
                 <div class="panel-body">
                     {{ issue.description }}

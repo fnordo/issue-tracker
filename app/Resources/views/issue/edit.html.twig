@@ -4,8 +4,10 @@
     <div class='page-header'>
         <div class='btn-toolbar pull-right'>
             <div class='btn-group'>
-                <a class="trigger-submit btn btn-default btn-danger hidden-xs" href="{{ path('issue_delete', { 'id': issue.id }) }}"
-                   data-form="#app_issue_delete" role="navigation">{{ 'delete'|trans }}</a>
+                {% if is_granted('DELETE', issue) %}
+                    <a class="trigger-submit btn btn-default btn-danger hidden-xs" href="{{ path('issue_delete', { 'id': issue.id }) }}"
+                        data-form="#app_issue_delete" role="navigation">{{ 'delete'|trans }}</a>
+                {% endif %}
                 <a class="btn btn-default btn-primary" href="{{ path('issue_index') }}" role="navigation">{{ 'back_to_list'|trans }}</a>
             </div>
             <div class="hidden">

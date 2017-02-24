@@ -18,8 +18,8 @@ class IssueVoter extends Voter
     /**
      * Supported attributes.
      */
-    const EDIT = 'edit';
-    const DELETE = 'delete';
+    const EDIT = 'EDIT';
+    const DELETE = 'DELETE';
 
     /**
      * @var AccessDecisionManagerInterface
