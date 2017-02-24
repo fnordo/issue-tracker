@@ -1,4 +1,6 @@
 /web/bundles/
+/web/css/
+/web/js/
 /app/bootstrap.php.cache
 /app/cache/*
 /app/config/parameters.yml
@@ -8,7 +10,8 @@
 /app/phpunit.xml
 /build/
 /vendor/
-/bin/
+/bin/*
+!bin/init.sh
 /composer.phar
 app.db
 .idea
