@@ -13,7 +13,7 @@ A tiny example application built with symfony2.
 * Download and extract project .zip
 * `cd` into the projects root directory
 * [Get composer](https://getcomposer.org/)
-* Install the vendors (when asked for parameters, just go withe the default values and you should be fine):
+* Install the vendors (when asked for parameters, just go with the default values and you should be fine):
 
 ```
 ./composer.phar install
